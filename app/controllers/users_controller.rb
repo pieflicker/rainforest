@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   def new
   	@user = User.new
   end
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
       render "new"
     end
   end
+  
   def params
     params.require(:email, :password, :password_confirmation)
   end
