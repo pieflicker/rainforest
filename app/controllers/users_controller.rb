@@ -11,4 +11,7 @@ class UsersController < ApplicationController
       render "new"
     end
   end
+  def params
+    params.require(:email, :password, :password_confirmation)
+  end
 end
