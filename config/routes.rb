@@ -1,19 +1,35 @@
 Rainforest::Application.routes.draw do
-  get "reviews/show"
-  get "reviews/new"
-  get "reviews/edit"
-  get "sessions/new"
-  get "sessions/create"
-  get "sessions/destroy"
-  get "users/new"
-  get "users/create"
-  resources :products
+  root :to => "products#index"
   resources :users, :only => [:new, :create]
   resources :sessions, :only => [:new, :create, :destroy]
 
   resources :products do
     resources :reviews, :except => [:index]
   end
+
+  # products/:product_id/reviews/:id
+  # products/:product_id/reviews/new
+
+
+
+  # resources :users, :only => [:index] do
+  #   resources :repository :only => [:index, :show]
+  # end
+  # # /\
+  # # equivalent
+  # # \/
+  # get "/users" => "users#index"
+  # get "/users/:user_id/repositories" => "repository#index"
+  # get "/users/:user_id/repositories/:id" => "repository#show"
+
+
+  # resources :users, :only => [:new, :create]
+  # /\
+  # equivalent
+  # \/
+  # get "/users/new" => "users#new"
+  # post "/users" => "users#create"
+
   
 end
   # The priority is based upon order of creation: first created -> highest priority.

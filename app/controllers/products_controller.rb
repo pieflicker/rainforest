@@ -26,11 +26,13 @@ class ProductsController < ApplicationController
 
   def new
   	@product = Product.new
+    # render "products/new"
 
   	respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @products }
   	end
+
   end
 
   def edit
@@ -38,7 +40,19 @@ class ProductsController < ApplicationController
   end
 
   def create
-  	@product = Product.new(params[:product])
+  	@product = Product.new(product_params)
+      if @product.save
+        redirect_to products_url, :notice => "Product added!"
+      else
+        render "new"
+      end
+    end
+
+    def product_params
+      params.require(:product).permit(:name, :description, :price_in_cents)
+    end
+
+
 
   	 respond_to do |format|
       if @product.save
@@ -48,7 +62,6 @@ class ProductsController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
-    end
   end
 
   def update
