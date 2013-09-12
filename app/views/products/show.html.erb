@@ -1,9 +1,16 @@
-<h3> <%= @product %> </h3>
+<h1> <%= @product.name %> </h1>
+
+<br>
+<p> a picture may go here </p>
+<br>
+<br>
+<p> <%= @product.description %> </p>
+
 <% if current_user %>
 
-  	<h3>Reviews</h3>
-
-  	<p>Reviews for <%= @product.name %></p>
+<br>
+<br>
+  	<h4>Reviews for <%= @product.name %></h4>
 
   	<% @product.reviews.each do |review| %>
     <p>
@@ -18,8 +25,9 @@
     </p>
   <% end %>
 
-
-  	<h4>New Review</h4>
+<a href="/">
+  <p>Back to index</p> </a>
+  	<h4>Review This Item</h4>
 
   	<%= form_for([@product, @review]) do |f| %>
     

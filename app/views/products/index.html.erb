@@ -1,9 +1,17 @@
-<h1>Products</h1>
+<h1>Here be Piratey Products</h1>
 
-<ul>
+
 <% Product.all.each do |product| %>
-	<li>
-	<%= product.name %>
-	</li>
+	<ul>
+		<a href="products/<%= product.id%>" >
+		
+		<li> <%= product.name %> </li>
+		</a>
+		<li> $<%= product.formatted_price %> </li>
+	
+	</ul>
 <% end %>
-</ul>
+
+
+<a href="products/new">
+<p>Add a new product</p> </a>
